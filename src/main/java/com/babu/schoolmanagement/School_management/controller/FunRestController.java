@@ -10,6 +10,11 @@ public class FunRestController {
 
     @GetMapping
     public String test() {
-        return "The time on the server is --" + LocalTime.now();
+        return "The time on the server is ---" + LocalTime.now();
+    }
+
+    @GetMapping("/hello")
+    public String test2(){
+        return "hello world";
     }
 }
