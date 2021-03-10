@@ -33,6 +33,7 @@
 		</dependency>
 	</dependencies>
 
+<!--	this is to package executable jar or war archive-->
 	<build>
 		<plugins>
 			<plugin>
