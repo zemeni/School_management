@@ -1,6 +1,7 @@
 package com.babu.schoolmanagement.School_management.controller;
 
 import com.babu.schoolmanagement.School_management.entity.Student;
+import com.babu.schoolmanagement.School_management.exception.StudentNotFoundException;
 import com.babu.schoolmanagement.School_management.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping
+   /* @PostMapping
     public Student addStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
-    }
+    }*/
 
-    @PostMapping("/all")
+    @PostMapping
     public List<Student> addStudents(@RequestBody List<Student> students) {
         return studentService.saveStudents(students);
     }
@@ -31,7 +32,11 @@ public class StudentController {
 
     @GetMapping("/{studentId}")
     public Student findStudentById(@PathVariable int studentId) {
-        return studentService.getStudentById(studentId);
+        Student student = studentService.getStudentById(studentId);
+        if (student == null) {
+            throw new StudentNotFoundException("student id " + studentId + " not found");
+        }
+        return student;
     }
 
     /*@GetMapping("byName/{name}")
@@ -44,9 +49,9 @@ public class StudentController {
         return studentService.updateStudent(student);
     }
 
-    @DeleteMapping
-    public String deleteStudent(@PathVariable int id) {
-        return studentService.deleteStudent(id);
+    @DeleteMapping("/{studentId")
+    public String deleteStudent(@PathVariable int studentId) {
+        return studentService.deleteStudent(studentId);
     }
 
 }
