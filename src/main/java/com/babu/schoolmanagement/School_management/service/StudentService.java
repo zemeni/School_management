@@ -2,6 +2,7 @@ package com.babu.schoolmanagement.School_management.service;
 
 import com.babu.schoolmanagement.School_management.entity.Student;
 import com.babu.schoolmanagement.School_management.repository.StudentRepository;
+import com.babu.schoolmanagement.School_management.utils.PhoneNumberValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,12 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private PhoneNumberValidator phoneNumberValidator;
+
     public Student saveStudent(Student student) {
+        if(!phoneNumberValidator.test(student.getPhoneNumber()))
+            throw new IllegalStateException("Phone Number Not Valid");
         return studentRepository.save(student);
     }
 

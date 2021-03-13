@@ -38,7 +38,7 @@ class StudentControllerTest {
 
     @Test
     void addStudent() throws Exception {
-        Student student = new Student("Babu", "Neupane", "abc@gmail.com");
+        Student student = new Student("Babu", "Neupane", "abc@gmail.com","9740974749");
         String inputInJson = this.mapToJson(student);
         String URI = "/api/school-management/students";
 
@@ -58,7 +58,7 @@ class StudentControllerTest {
 
     @Test
     void findStudentById() throws Exception{
-        Student student = new Student(1,"Babu","Neupane","acb@gmial.com");
+        Student student = new Student(1,"Babu","Neupane","acb@gmial.com","96298628");
         Mockito.when(studentService.getStudentById(Mockito.anyInt())).thenReturn(student);
         String URI = "/api/school-management/students/1";
         MockHttpServletRequestBuilder requestBuilders = MockMvcRequestBuilders

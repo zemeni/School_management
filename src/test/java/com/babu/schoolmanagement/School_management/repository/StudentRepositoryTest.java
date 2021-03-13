@@ -25,7 +25,7 @@ class StudentRepositoryTest {
 
     @Test
     void saveStudent() {
-        Student student = new Student("Babu","Neupane","abc@gmail.com");
+        Student student = new Student("Babu","Neupane","abc@gmail.com","98938838");
         Student savedInDb = testEntityManager.persist(student);
         Student fromDb = studentRepository.getOne(savedInDb.getId());
         assertThat(fromDb).isEqualTo(savedInDb);
@@ -33,7 +33,7 @@ class StudentRepositoryTest {
 
     @Test
     void findByEmail(){
-        Student student = new Student("Babu","Neupane","abc@gmail.com");
+        Student student = new Student("Babu","Neupane","abc@gmail.com","9879838783");
         Student savedInDb = testEntityManager.persist(student);
         Student fromDb = studentRepository.findByEmail("abc@gmail.com");
         assertThat(savedInDb).isEqualTo(fromDb);
@@ -41,7 +41,7 @@ class StudentRepositoryTest {
 
     @Test
     void findById(){
-        Student student1 = new Student("abc","bcd","doid");
+        Student student1 = new Student("abc","bcd","doid","9798789");
         Student savedInDb = testEntityManager.persist(student1);
         Student fromDb = studentRepository.getOne(savedInDb.getId());
         assertThat(fromDb).isEqualTo(savedInDb);
@@ -49,8 +49,8 @@ class StudentRepositoryTest {
 
     @Test
     void findAll(){
-        Student student2 = new Student("Baburam","Neupane","bcd@gmail.com");
-        Student student3 = new Student("Baburam","Neupane","bcd@gmail.com");
+        Student student2 = new Student("Baburam","Neupane","bcd@gmail.com","98987");
+        Student student3 = new Student("Baburam","Neupane","bcd@gmail.com","98797");
         Student savedInDb1 = testEntityManager.persist(student3);
         Student savedInDb2 = testEntityManager.persist(student2);
         List<Student> allFromDb = studentRepository.findAll();
